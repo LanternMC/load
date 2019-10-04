@@ -1,0 +1,8 @@
+{
+    "replace": false,
+    "values": [
+        "load:__init",
+        "#load:standard",
+        "#load:load"
+    ]
+}
