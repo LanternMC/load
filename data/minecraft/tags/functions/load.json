@@ -1,9 +1,5 @@
 {
-    "replace": false,
     "values": [
-        "load:__init",
-        "#load:standard",
-        "#load:load",
-        "#load:post_load"
+        "#load:__init"
     ]
 }
