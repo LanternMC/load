@@ -1,11 +1,12 @@
 # Lantern Load
 
-Lantern Load provides a simple implementation of version resolution intended to
-allow data packs and their dependencies to load in a controllable order. It is
-currently used by the [AESTD] project, and in the future will be used by the
-[Phi] project. This library is dedicated to the public domain and contains no
-branding, so it is a simple addition to any data pack that requires dependencies
-and wishes to be compatible with the greater data pack ecosystem.
+Lantern Load provides a simple implementation of version resolution intended to allow data packs and their dependencies to load in a controllable order.
+Projects that depend on this library include [AESTD], [Gamemode 4], and [PlayerDB].
+
+This project is released under the [BSD 0-Clause License](LICENSE), which in short means you can do anything you want with or without attribution.
+If you are familiar with the MIT License, this license is that but even more permissive.
+This licensing choice permits you to use the repository's contents for any purpose--commercial or non-commercial, open source or not--with nothing expected in return.
+It is our hope that this promotes innovation across the wider data pack ecosystem.
 
 ## Usage
 1. Copy the `load` and `minecraft` directories from `Load/data/` into your datapack's `data` folder. The copied in `load.json` should now call `#load:__init`.
@@ -48,14 +49,9 @@ Under normal circumstances, as per Semantic versioning, a module is compatible i
 
 ## License
 
-This data pack is licensed under [CC0].
-
-### Contribution
-
-Unless you explicitly state otherwise, any contributions intentionally submitted
-for inclusion in Load by you shall be licensed as CC0, without any additional
-terms or conditions.
+Lantern Load is made freely available under the terms of the [BSD 0-Clause License](LICENSE).
+Third-party contributions shall be licensed under the same terms unless explicitly stated otherwise.
 
 [AESTD]: https://github.com/Aeldrion/AESTD
-[Phi]: https://github.com/MinecraftPhi/MinecraftPhi-modules
-[CC0]: https://github.com/LanternMC/Load/blob/master/LICENSE
+[Gamemode 4]: https://github.com/Gamemode4Dev/GM4_Datapacks
+[PlayerDB]: https://github.com/rx-modules/PlayerDB
