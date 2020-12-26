@@ -9,7 +9,7 @@ This licensing choice permits you to use the repository's contents for any purpo
 It is our hope that this promotes innovation across the wider data pack ecosystem.
 
 ## Usage
-1. Copy the `load` and `minecraft` directories from `Load/data/` into your datapack's `data` folder. The copied in `load.json` should now call `#load:__init`.
+1. Copy the `load` and `minecraft` directories from `Load/data/` into your data pack's `data` folder. The copied in `load.json` should now call `#load:__init`.
 2. Add load functions in the desired load order to `data/load/tags/functions/load.json` or the other tags `standard.json` and  `post_load.json`. For example, `load.json`:
 ```json
 {
