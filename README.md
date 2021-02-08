@@ -35,19 +35,20 @@ Some data packs may find it useful to consolidate minor and patch versions into 
 
 - `your_pack.version.minorpatch` = `your_pack.version.minor * 1000 + your_pack.version.patch`
  
-```
+```ini
 # Add own data pack's version (1.0.0).
 scoreboard players set your_pack.version.major load.status 1
 scoreboard players set your_pack.version.minor load.status 0
 scoreboard players set your_pack.version.patch load.status 0
 ```
 
-```
+If you depend on another pack, you should check its version before initializing your own pack.
+At a minimum its major and minor versions should be checked to maintain expected behavior:
+
+```ini
 # Check that dependency pack version is >= 1.0 and < 2.0.
 execute if score your_pack.version.major load.status matches 1 if score your_pack.version.minor load.status matches 0.. run ...
 ```
-
-At a minimum the major and minor versions should be checked in order to maintain compatibility and expected behavior.
 
 ### Avoiding the `#minecraft:tick` tag
 
@@ -66,17 +67,12 @@ Under normal circumstances, as per [Semantic Versioning], a dependency is compat
 ## Data Storage
 
 Data packs can store load-related data in the `load:data` storage namespace.
-The NBT path chosen for storage **must** be namespaced according to the name of the data pack.
+The NBT path `load:data _` will be cleared on reload, similarly to `load.status`.
+Packs **must** properly namespace tags added to this storage path.
 
-The NBT path `load:data CurrentReload` will be cleared on reload, similarly to `load.status`.
-This can be useful for storing structured data that is only valid for the current reload.
-
-```
-# Example of adding a tag that is only valid for the current reload.
-data modify storage load:data CurrentReload.your_pack.FavoriteNumber set value 521
-
-# Example of adding a tag that is valid across reloads.
-data modify storage load:data your_pack.PermanentData set value "Foo"
+```ini
+# Set a variable that is specific to the current reload.
+data modify storage load:data _.your_pack.FavoriteNumber set value 521
 ```
 
 ## License
