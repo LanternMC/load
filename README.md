@@ -35,7 +35,7 @@ Some data packs may find it useful to consolidate minor and patch versions into 
 
 - `your_pack.version.minorpatch` = `your_pack.version.minor * 1000 + your_pack.version.patch`
  
-```ini
+```mcfunction
 # Add own data pack's version (1.0.0).
 scoreboard players set your_pack.version.major load.status 1
 scoreboard players set your_pack.version.minor load.status 0
@@ -45,7 +45,7 @@ scoreboard players set your_pack.version.patch load.status 0
 If you depend on another pack, you should check its version before initializing your own pack.
 At a minimum its major and minor versions should be checked to maintain expected behavior:
 
-```ini
+```mcfunction
 # Check that dependency pack version is >= 1.0 and < 2.0.
 execute if score your_pack.version.major load.status matches 1 if score your_pack.version.minor load.status matches 0.. run ...
 ```
@@ -70,7 +70,7 @@ Data packs can store load-related data in the `load:data` storage namespace.
 The NBT path `load:data _` will be cleared on reload, similarly to `load.status`.
 Packs **must** properly namespace tags added to this storage path.
 
-```ini
+```mcfunction
 # Set a variable that is specific to the current reload.
 data modify storage load:data _.your_pack.FavoriteNumber set value 521
 ```
