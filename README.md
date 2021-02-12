@@ -64,17 +64,6 @@ This has the effect of disabling your pack when required dependencies are missin
 
 Under normal circumstances, as per [Semantic Versioning], a dependency is compatible if the `major` version is equal to the expected version, and the `minor` and `patch` versions are greater than or equal to the expected version.
 
-## Data Storage
-
-Data packs can store load-related data in the `load:data` storage namespace.
-The NBT path `load:data _` will be cleared on reload, similarly to `load.status`.
-Packs **must** properly namespace tags added to this storage path.
-
-```mcfunction
-# Set a variable that is specific to the current reload.
-data modify storage load:data _.your_pack.FavoriteNumber set value 521
-```
-
 ## License
 
 Lantern Load is made freely available under the terms of the [BSD 0-Clause License].
