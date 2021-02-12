@@ -1,4 +1,3 @@
-# Reset data storage and scoreboard objective on reload.
-execute if data storage load:data _ run data remove storage load:data _
+# Reset scoreboards so packs can set values accurate for current load.
 scoreboard objectives add load.status dummy
 scoreboard players reset * load.status
