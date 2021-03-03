@@ -4,9 +4,7 @@ Lantern Load provides a simple implementation of version resolution intended to 
 Projects that depend on this library include [AESTD], [Gamemode 4], and [PlayerDB].
 
 This project is released under the [BSD 0-Clause License], which in short means you can do anything you want with or without attribution.
-If you are familiar with the MIT License, this license is that but even more permissive.
-This licensing choice permits you to use the repository's contents for any purpose--commercial or non-commercial, open source or not--with nothing expected in return.
-It is our hope that this promotes innovation across the wider data pack ecosystem.
+Essentially this means that you can just include the files here and do whatever you want with them; nothing is expected in return.
 
 ## Usage
 
@@ -23,46 +21,52 @@ It is our hope that this promotes innovation across the wider data pack ecosyste
 }
 ```
 
-## Version Resolution
+### Pack Versioning Specification
 
-Packs can publish their versions to the `load.status` scoreboard objective using the [Semantic Versioning] scheme in the following manner:
+The following describes the recommended, but not mandatory, use of the `load.status` scoreboard:
 
-- `your_pack.version.major`: Major version number, incremented when breaking changes are made.
-- `your_pack.version.minor`: Minor version number, incremented when new features are added, reset when the major version is incremented.
-- `your_pack.version.patch`: Patch version number, incremented when bug fixes are applied, reset when the minor or major version is incremented.
+> Each pack **should** define at least one fake player whose name includes the name of the pack.
+> At least one of these fake players **should** have a value that **should not** be decreased in future updates to the pack.
+> This score value **may** be defined to remain constant, or increment in future updates to the pack with or without a semantic meaning.
 
-Some data packs may find it useful to consolidate minor and patch versions into a single scoreboard:
-
-- `your_pack.version.minorpatch` = `your_pack.version.minor * 1000 + your_pack.version.patch`
- 
-```mcfunction
-# Add own data pack's version (1.0.0).
-scoreboard players set your_pack.version.major load.status 1
-scoreboard players set your_pack.version.minor load.status 0
-scoreboard players set your_pack.version.patch load.status 0
-```
-
-If you depend on another pack, you should check its version before initializing your own pack.
-At a minimum its major and minor versions should be checked to maintain expected behavior:
-
-```mcfunction
-# Check that dependency pack version is >= 1.0 and < 2.0.
-execute if score your_pack.version.major load.status matches 1 if score your_pack.version.minor load.status matches 0.. run ...
-```
+This specification is intentionally open-ended as it is not this project's goal to force a specific versioning scheme on every data pack.
+Following the specification simply implies that one can detect when your pack is loaded by checking your `load.status` score.
 
 ### Avoiding the `#minecraft:tick` tag
 
-Packs should not put their tick functions in the `#minecraft:tick` tag, and should instead schedule their tick functions on load using `schedule` and to reschedule at the end of their tick functions.
-This solves two problems:
+The `#minecraft:tick` tag has several problems, the worst of which is that it runs *before* `#minecraft:load`, meaning that your pack may be ticked without first being initialized.
+Lantern Load is meant to allow every pack to initialize itself in a predictable order within the same tick, including on reload, and `#minecraft:tick` interferes with this design goal.
+The recommended solution is to instead invoke `schedule` from a function defined in `#load:load`.
 
-- The vanilla `#minecraft:tick` tag runs **before** `#minecraft:load`, and as such the loading process will not be complete when the tick function runs for the first time after loading.
-- `#minecraft:tick` always runs all its functions every tick, with no way to disable a function apart from wrapping it in a function that checks a condition. This wastes performance when a tick function is not needed.
+```mcfunction
+# your_pack:load
+scoreboard players set your_pack load.status 1
+schedule function your_pack:tick 1t
 
-Using `schedule` for tick functions is also useful for version handling.
-You should clear your schedule tick function(s) on every reload, and only re-schedule them after confirming that your dependency versions are compatible.
-This has the effect of disabling your pack when required dependencies are missing, rather than causing cryptic errors and breaking your world.
+# your_pack:tick
+say this is a tick!
+schedule function your_pack:tick 1t
+```
 
-Under normal circumstances, as per [Semantic Versioning], a dependency is compatible if the `major` version is equal to the expected version, and the `minor` and `patch` versions are greater than or equal to the expected version.
+### Checking for dependencies
+
+In your load function, you may wish to check the value of another pack's score in `load.status` before initializing scoreboards or scheduling your tick function.
+Doing so is a useful way to handle missing dependencies and reduce the risk of your data pack causing errors.
+
+```mcfunction
+# your_pack:load
+schedule clear your_pack:tick
+execute if score other_pack load.status matches 1 run scoreboard players set your_pack load.status 1
+execute if score your_pack load.status matches 1 run function your_pack:init
+
+# your_pack:init
+scoreboard objectives add your_objective dummy
+schedule function your_pack:tick 1t
+
+# your_pack:tick
+scoreboard players add your_score your_objective 1
+schedule function your_pack:tick 1t
+```
 
 ## License
 
@@ -72,5 +76,4 @@ Third-party contributions shall be licensed under the same terms unless explicit
 [AESTD]: https://github.com/Aeldrion/AESTD
 [Gamemode 4]: https://github.com/Gamemode4Dev/GM4_Datapacks
 [PlayerDB]: https://github.com/rx-modules/PlayerDB
-[Semantic Versioning]: https://semver.org/
 [BSD 0-Clause License]: LICENSE
