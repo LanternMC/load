@@ -3,8 +3,7 @@
 Lantern Load provides a simple implementation of version resolution intended to allow data packs and their dependencies to load in a controllable order.
 Projects that depend on this library include [AESTD], [Gamemode 4], and [PlayerDB].
 
-This project is released under the [BSD 0-Clause License], which in short means you can do anything you want with or without attribution.
-Essentially this means that you can just include the files here and do whatever you want with them; nothing is expected in return.
+This project is released under the [BSD 0-Clause License], which in short means you can do whatever you want with these files, with nothing expected in return. You do not even have to credit us.
 
 ## Usage
 
