@@ -2,12 +2,17 @@
 :aestd: https://github.com/Aeldrion/AESTD[AESTD]
 :gm4: https://github.com/Gamemode4Dev/GM4_Datapacks[Gamemode 4]
 :playerdb: https://github.com/rx-modules/PlayerDB[PlayerDB]
+:old-version: https://github.com/LanternMC/load/tree/1.16[older version of Lantern Load]
 :0bsd-license: link:LICENSE[BSD 0-Clause License]
 
 Lantern Load provides a simple implementation of version resolution intended to allow data packs and their dependencies to load in a controllable order.
 Projects that depend on this library include {aestd}, {gm4}, and {playerdb}.
 
 This project is released under the {0bsd-license}, which in short means you can do whatever you want with these files, with nothing expected in return. You do not even have to credit us.
+
+WARNING: *This pack is for Minecraft 1.17 or higher.*
+This version of Lantern Load will not work correctly in 1.16 and will not even load in versions prior to 1.16.
+If you must release a pack for 1.16, please use an {old-version}.
 
 == Usage
 
