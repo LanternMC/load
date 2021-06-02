@@ -8,6 +8,9 @@ If you are familiar with the MIT License, this license is that but even more per
 This licensing choice permits you to use the repository's contents for any purpose--commercial or non-commercial, open source or not--with nothing expected in return.
 It is our hope that this promotes innovation across the wider data pack ecosystem.
 
+**This version of Lantern Load is for version 1.16.5 and prior.**
+For versions 1.17 and later please use [the latest version of Lantern Load](https://github.com/LanternMC/load)
+
 ## Usage
 1. Copy the `load` and `minecraft` directories from `Load/data/` into your data pack's `data` folder. The copied in `load.json` should now call `#load:__init`.
 2. Add load functions in the desired load order to `data/load/tags/functions/load.json` or the other tags `standard.json` and  `post_load.json`. For example, `load.json`:
