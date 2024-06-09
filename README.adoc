@@ -18,7 +18,7 @@ If you must release a pack for 1.16, please use an {old-version}.
 
 1. Copy the `load` and `minecraft` directories from `load/data/` into your pack's `data` folder. The copied in `load.json` should now call `#load:_private/load`.
 
-2. Add load functions in the desired load order to `data/load/tags/functions/load.json` or the other tags `pre_load.json` and  `post_load.json`. For most cases you should prefer `load.json`.
+2. Add load functions in the desired load order to `data/load/tags/function/load.json` or the other tags `pre_load.json` and  `post_load.json`. For most cases you should prefer `load.json`.
 
 .Example `load.json` contents:
 [source,json]
