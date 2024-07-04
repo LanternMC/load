@@ -2,7 +2,7 @@
 :aestd: https://github.com/Aeldrion/AESTD[AESTD]
 :gm4: https://github.com/Gamemode4Dev/GM4_Datapacks[Gamemode 4]
 :playerdb: https://github.com/rx-modules/PlayerDB[PlayerDB]
-:old-version: https://github.com/LanternMC/load/tree/master[older version of Lantern Load]
+:old-version: https://github.com/PatrickJScruggs/load/tree/1.17-1.20.6[older version of Lantern Load]
 :0bsd-license: link:LICENSE[BSD 0-Clause License]
 
 Lantern Load provides a simple implementation of version resolution intended to allow data packs and their dependencies to load in a controllable order.
