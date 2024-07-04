@@ -2,7 +2,7 @@
 :aestd: https://github.com/Aeldrion/AESTD[AESTD]
 :gm4: https://github.com/Gamemode4Dev/GM4_Datapacks[Gamemode 4]
 :playerdb: https://github.com/rx-modules/PlayerDB[PlayerDB]
-:old-version: https://github.com/LanternMC/load/tree/1.16[older version of Lantern Load]
+:old-version: https://github.com/LanternMC/load/tree/1.20[older version of Lantern Load]
 :0bsd-license: link:LICENSE[BSD 0-Clause License]
 
 Lantern Load provides a simple implementation of version resolution intended to allow data packs and their dependencies to load in a controllable order.
@@ -10,15 +10,15 @@ Projects that depend on this library include {aestd}, {gm4}, and {playerdb}.
 
 This project is released under the {0bsd-license}, which in short means you can do whatever you want with these files, with nothing expected in return. You do not even have to credit us.
 
-WARNING: *This pack is for Minecraft 1.17 or higher.*
-This version of Lantern Load will not work correctly in 1.16 and will not even load in versions prior to 1.16.
-If you must release a pack for 1.16, please use an {old-version}.
+WARNING: *This pack is for Minecraft 1.21 or higher.*
+This version of Lantern Load will not work correctly in 1.20 and will not even load in versions prior to 1.20.
+If you must release a pack for 1.20, please use an {old-version}.
 
 == Usage
 
 1. Copy the `load` and `minecraft` directories from `load/data/` into your pack's `data` folder. The copied in `load.json` should now call `#load:_private/load`.
 
-2. Add load functions in the desired load order to `data/load/tags/functions/load.json` or the other tags `pre_load.json` and  `post_load.json`. For most cases you should prefer `load.json`.
+2. Add load functions in the desired load order to `data/load/tags/function/load.json` or the other tags `pre_load.json` and  `post_load.json`. For most cases you should prefer `load.json`.
 
 .Example `load.json` contents:
 [source,json]
